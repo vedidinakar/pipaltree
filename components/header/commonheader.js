@@ -2,7 +2,25 @@ import React, {useState, useEffect, useRef } from 'react';
 import { deleteCookie } from 'cookies-next';
 import Router, { useRouter } from "next/router";
 
+
+
 export default function CommonHeader(){
+    const router = useRouter();
+    const goToMonitor = () =>{
+      Router.push("/monitor");
+    }
+    const goToDashboard = () =>{
+      Router.push("/");
+    }
+    const goToReports = () =>{
+      Router.push("/reports");
+    }
+    const goTocustomers = () =>{
+      Router.push("/customers");
+    }
+    
+    
+
     return (
         <header className= "w-full top-0">
           <div className= "flex items-center flex-wrap py-5 px-8 bg-white">
@@ -15,25 +33,25 @@ export default function CommonHeader(){
               <div className='text-black'>
                 <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                     <li className="mr-2">
-                        <a href="#" className="inline-flex items-center px-4 py-3 text-white bg-tabsActiveColor rounded-lg active" aria-current="page">
+                        <a href="/" className={`inline-flex  items-center px-4 py-3 cursor-pointer ${router.pathname === ("/")?"bg-tabsActiveColor rounded-lg active text-white":"bg-white text-primaryColor"} `} aria-current="page">
                           <img className='w-4 h-4' src='./dashboard.png'/>
                           <span className='pl-2'>Dashboard</span>
                         </a>
                     </li>
                     <li className="mr-2">
-                        <a href="#"  className="inline-flex  items-center px-4 py-3 rounded-lg">
+                        <a href="/monitor" className={`inline-flex  items-center px-4 py-3 cursor-pointer ${router.pathname.startsWith("/monitor")?"bg-tabsActiveColor rounded-lg active text-white":"bg-white text-primaryColor"} `}>
                         <img className='w-4 h-4' src='./monitor.png'/>
-                          <span className='pl-2 text-primaryColor'>Monitor</span>
+                          <span className='pl-2'>Monitor</span>
                         </a>
                     </li>
                     <li className="mr-2">
-                        <a href="#" className="inline-flex items-center px-4 py-3 rounded-lg">
+                        <a href="/reports" className={`inline-flex  items-center px-4 py-3 cursor-pointer ${router.pathname.startsWith("/reports")?"bg-tabsActiveColor rounded-lg active text-white":"bg-white text-primaryColor"} `}>
                           <img className='w-4 h-4' src='./reports.png'/>
                           <span className='pl-2 text-primaryColor'>Reports</span>
                         </a>
                     </li>
                     <li className="mr-2">
-                        <a href="#" className="inline-flex  items-center px-4 py-3 rounded-lg">
+                        <a href="/customers" className={`inline-flex  items-center px-4 py-3 cursor-pointer ${router.pathname.startsWith("/customers")?"bg-tabsActiveColor rounded-lg active text-white":"bg-white text-primaryColor"} `}>
                         <img className='w-4 h-4' src='./customers.png'/>
                           <span className='pl-2 text-primaryColor'>Customers</span>
                         </a>
